@@ -189,5 +189,5 @@
 <br>
 <div style="display: flex; justify-content: space-between;">
   <a href="./project-structure.md">Previous: Project Structure</a>
-  <a href="./teck-stack.md">Next: Tech Stack</a>
+  <a href="./tech-stack.md">Next: Tech Stack</a>
 </div>
