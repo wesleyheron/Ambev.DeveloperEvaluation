@@ -80,7 +80,7 @@ public class SalesController : BaseController
     /// <param name="cancellationToken">The cancellation token for asynchronous operations.</param>
     /// <returns>A result containing the sale data if found, or a not found response.</returns>
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(ApiResponseWithData<Sales.GetSale.GetSaleResult>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponseWithData<Sales.GetSale.GetSaleResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetSale([FromRoute] Guid id, CancellationToken cancellationToken)
@@ -95,11 +95,11 @@ public class SalesController : BaseController
         var query = _mapper.Map<GetSaleQuery>(request);
         var response = await _mediator.Send(query, cancellationToken);
 
-        return Ok(new ApiResponseWithData<Sales.GetSale.GetSaleResult>
+        return Ok(new ApiResponseWithData<Sales.GetSale.GetSaleResponse>
         {
             Success = true,
             Message = "Sale retrieved successfully",
-            Data = _mapper.Map<Sales.GetSale.GetSaleResult>(response)
+            Data = _mapper.Map<Sales.GetSale.GetSaleResponse>(response)
         });
     }
 
@@ -110,16 +110,16 @@ public class SalesController : BaseController
     /// <param name="cancellationToken">The cancellation token for asynchronous operations.</param>
     /// <returns>A result containing a list of sales.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(ApiResponseWithData<List<ListSaleResult>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponseWithData<List<ListSaleResponse>>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ListSales([FromQuery] ListSalesRequest request, CancellationToken cancellationToken)
     {
         var query = new ListSaleQuery();
 
         var response = await _mediator.Send(query, cancellationToken);
 
-        return Ok(new ApiResponseWithData<List<ListSaleResult>>
+        return Ok(new ApiResponseWithData<List<ListSaleResponse>>
         {
-            Data = _mapper.Map<List<ListSaleResult>>(response),
+            Data = _mapper.Map<List<ListSaleResponse>>(response),
             Success = true,
             Message = "Sales listed successfully"
         });

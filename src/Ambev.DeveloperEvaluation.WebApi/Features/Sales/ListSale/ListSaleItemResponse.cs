@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a list item for a sale with details such as product, quantity, and price.
     /// </summary>
-    public class ListSaleItemResult
+    public class ListSaleItemResponse
     {
         /// <summary>
         /// The unique identifier of the sale item.

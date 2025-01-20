@@ -14,8 +14,8 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.ListSale
         public ListSaleProfile()
         {
             CreateMap<ListSaleQuery, ListSalesRequest>();
-            CreateMap<ListSalesResult, ListSaleResult>();
-            CreateMap<ListSaleItemResult, ListSaleItemResult>();
+            CreateMap<ListSalesResult, ListSaleResponse>();
+            CreateMap<ListSaleItemResult, ListSaleItemResponse>();
         }
     }
 }

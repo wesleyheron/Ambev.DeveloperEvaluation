@@ -14,7 +14,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale
         public GetSaleProfile()
         {
             CreateMap<GetSaleRequest, GetSaleQuery>();
-            CreateMap<GetSaleResult, GetSaleResult>();
+            CreateMap<GetSaleResult, GetSaleResponse>();
             CreateMap<GetSaleItemResult, SaleItemResponse>();
         }
     }

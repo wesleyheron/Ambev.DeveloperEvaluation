@@ -1,9 +1,9 @@
-﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.GetSale
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.ListSale
 {
     /// <summary>
-    /// Represents the response object containing details of a sale.
+    /// Represents the result of a sale, including sale details and associated sale items.
     /// </summary>
-    public class GetSaleResult
+    public class ListSaleResponse
     {
         /// <summary>
         /// The unique identifier of the sale.
@@ -16,7 +16,7 @@
         public string SaleNumber { get; set; } = string.Empty;
 
         /// <summary>
-        /// The date of the sale.
+        /// The date the sale was made.
         /// </summary>
         public DateTime SaleDate { get; set; }
 
@@ -41,8 +41,8 @@
         public bool IsCancelled { get; set; }
 
         /// <summary>
-        /// The list of items in the sale.
+        /// The list of items associated with the sale.
         /// </summary>
-        public List<SaleItemResponse> Items { get; set; } = [];
+        public List<ListSaleItemResponse> Items { get; set; } = [];
     }
 }
