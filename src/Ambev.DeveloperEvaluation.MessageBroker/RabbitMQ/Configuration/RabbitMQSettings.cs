@@ -12,7 +12,7 @@
         /// This is the address of the server to which the application will connect.
         /// Default is "localhost".
         /// </summary>
-        public string HostName { get; set; } = "localhost";
+        public string HostName { get; set; } = "ambev_developer_evaluation_rabbitmq";
 
         /// <summary>
         /// Gets or sets the username used to authenticate with the RabbitMQ server.

@@ -31,6 +31,11 @@
         public string Branch { get; set; } = string.Empty;
 
         /// <summary>
+        /// Indicates whether the sale is cancelled.
+        /// </summary>
+        public bool IsCancelled { get; set; }
+
+        /// <summary>
         /// Gets or sets the list of items in the sale.
         /// </summary>
         public List<GetSaleItemResult> Items { get; set; } = new();

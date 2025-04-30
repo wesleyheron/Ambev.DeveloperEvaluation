@@ -42,6 +42,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.Queries.GetSale
                 SaleDate = sale.SaleDate,
                 Customer = sale.Customer,
                 Branch = sale.Branch,
+                IsCancelled = sale.IsCancelled,
                 Items = sale.Items.Select(item => new GetSaleItemResult
                 {
                     Id = item.Id,

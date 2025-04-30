@@ -7,6 +7,11 @@
     public class SaleItemCommand
     {
         /// <summary>
+        /// Gets or sets the unique identifier of the saleItem.
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the name of the product for the item.
         /// </summary>
         /// <value>The name of the product associated with the item.</value>

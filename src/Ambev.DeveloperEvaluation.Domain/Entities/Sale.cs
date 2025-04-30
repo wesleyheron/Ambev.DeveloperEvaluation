@@ -112,6 +112,17 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         }
 
         /// <summary>
+        /// Update the list of item to the sale, recalculates the total amount, and updates the metadata.
+        /// </summary>
+        /// <param name="items">The item to add to the sale.</param>
+        public void SetItems(List<SaleItem> items)
+        {
+            Items = items;
+            CalculateTotalAmount();
+            UpdateSaleDate();
+        }
+
+        /// <summary>
         /// Cancels a specific item in the sale based on its unique identifier, 
         /// recalculates the total amount, and updates the metadata.
         /// </summary>

@@ -88,6 +88,8 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.Commands.UpdateSale
             sale.SaleNumber = request.SaleNumber;
             sale.Customer = request.Customer;
             sale.Branch = request.Branch;
+            sale.SetItems(sale.Items.ToList());
+
             sale.CancelSale(request.IsCancelled);
 
             return sale;
