@@ -3,6 +3,11 @@
 ## About the Project
 This project is a **Developer Evaluation Project - Sales Management API** designed to handle CRUD operations for managing sales records. It follows **Domain-Driven Design (DDD)** principles and implements business logic for calculating discounts based on product quantities. The API is built using **.NET 8**, leveraging technologies like **Mediator**, **AutoMapper**, **Entity Framework (EF)**, **RabbitMQ**, and **PostgreSQL**. It is containerized using **Docker Compose** for easy deployment, scalability, and isolation of services.
 
+- **Backend API (.NET 8)**: Handles business logic, data storage, and event publishing via RabbitMQ.
+- **Frontend (Angular 19)**: User interface for managing sales records and interacting with the API.
+
+The entire solution is containerized and orchestrated using **Docker Compose**, ensuring fast and consistent local setup with isolated services.
+
 This API also includes **MessageBroker integration with RabbitMQ** for event publishing, supporting key events like:
 - `SaleCreated`
 - `SaleModified`
@@ -59,6 +64,7 @@ Structured error responses for:
 - **xUnit** for unit testing
 - **Swagger/OpenAPI** for API documentation
 - **Docker Compose** for containerized environment
+- **Angular 19**, **TypeScript**, **RxJS**
 
 ## How to Execute the Project
 
@@ -101,7 +107,7 @@ docker-compose up --build
 ## Accessing the API
 
 Once the containers are up, you can access the API via:
-[http://localhost:7181](http://localhost:7181)
+[http://localhost:8080](http://localhost:8080)
 
 ## Testing the API
 
