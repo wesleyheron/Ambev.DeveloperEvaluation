@@ -1,0 +1,27 @@
+<div *ngIf="isLoading" class="loading">
+    <p>Carregando...</p>
+  </div>
+  
+  <div *ngIf="!isLoading && sale" class="sale-details">
+    <h2>Detalhes da Venda</h2>
+  
+    <div class="info">
+      <p><strong>Número:</strong> {{ sale.saleNumber }}</p>
+      <p><strong>Data:</strong> {{ sale.saleDate }}</p>
+      <p><strong>Cliente:</strong> {{ sale.customer }}</p>
+      <p><strong>Filial:</strong> {{ sale.branch }}</p>
+    </div>
+  
+    <h3>Itens</h3>
+    <ul class="item-list">
+      <li *ngFor="let item of sale.items">
+        <span class="product">{{ item.product }}</span>
+        <span class="details">{{ item.quantity }} x {{ item.unitPrice | currency }} - {{ item.discount | currency}}</span>
+      </li>
+    </ul>
+  
+    <p class="total"><strong>Total:</strong> {{ sale.totalAmount | currency }}</p>
+  
+    <button class="back-button" (click)="goBack()">Voltar</button>
+  </div>
+  

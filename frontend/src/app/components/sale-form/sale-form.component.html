@@ -1,0 +1,188 @@
+<style>
+.form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  
+  h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #333;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  
+    .form-group {
+      display: flex;
+      flex-direction: column;
+  
+      label {
+        margin-bottom: 0.4rem;
+        font-weight: 600;
+        color: #444;
+      }
+  
+      input,
+      select {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+  
+        &:focus {
+          border-color: #1976d2;
+          outline: none;
+        }
+      }
+    }
+  
+    .item-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto auto;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+  
+      input {
+        padding: 0.4rem;
+      }
+  
+      button {
+        padding: 0.4rem 0.8rem;
+        border: none;
+        background-color: #ef5350;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: #d32f2f;
+        }
+      }
+    }
+  
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+  
+      button {
+        padding: 0.6rem 1.2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+  
+        &:first-child {
+          background-color: #1976d2;
+          color: #fff;
+  
+          &:hover {
+            background-color: #1565c0;
+          }
+        }
+  
+        &:last-child {
+          background-color: #9e9e9e;
+          color: #fff;
+  
+          &:hover {
+            background-color: #757575;
+          }
+        }
+      }
+  
+      .delete-button {
+        background-color: #e53935;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        margin-left: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+  
+        &:hover {
+          background-color: #d32f2f;
+        }
+      }
+    }
+  }
+}
+
+  
+</style>
+
+<div class="form-container">
+  <h2>{{ isEdit ? 'Editar Venda' : 'Nova Venda' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="saleNumber">Número da Venda</label>
+      <input id="saleNumber" formControlName="saleNumber" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="saleDate">Data da Venda</label>
+      <input id="saleDate" formControlName="saleDate" type="datetime-local" />
+    </div>
+
+    <div class="form-group">
+      <label for="customer">Cliente</label>
+      <input id="customer" formControlName="customer" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label for="branch">Filial</label>
+      <input id="branch" formControlName="branch" type="text" />
+    </div>
+
+    <div *ngIf="isEdit" class="form-group">
+        <label for="isCancelled">Status</label>
+        <select id="isCancelled" formControlName="isCancelled">
+          <option [ngValue]="false">Ativo</option>
+          <option [ngValue]="true">Cancelado</option>
+        </select>
+      </div>
+      
+
+    <div formArrayName="items" class="form-group">
+      <label>Itens</label>
+
+      <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="item-row">
+        <input placeholder="Produto" formControlName="product" type="text" />
+        <input placeholder="Quantidade" formControlName="quantity" type="number" />
+        <input placeholder="Preço Unitário" formControlName="unitPrice" type="number" />
+        <button *ngIf="isEdit && items.length > 0" type="button" (click)="confirmCancel(i)">Cancelar Item</button>
+        <button type="button" (click)="removeItem(i)">Remover</button>
+      </div>
+
+      <button type="button" (click)="addItem()">Adicionar Item</button>
+    </div>
+
+    <div class="form-group">
+      <label for="totalAmount">Total</label>
+      <input formControlName="totalAmount" type="number" [disabled]="!isEdit" />
+    </div>
+
+    <div class="actions">
+        <button type="submit" [disabled]="form.invalid">
+          {{ isEdit ? 'Atualizar' : 'Criar' }}
+        </button>
+        <button type="button" (click)="router.navigate(['/'])">Cancelar</button>
+      
+        <button 
+          *ngIf="isEdit" 
+          type="button" 
+          class="delete-button" 
+          (click)="onDelete()">
+          Excluir
+        </button>
+      </div>
+  </form>
+</div>

@@ -1,0 +1,48 @@
+<div class="sales-container">
+    <h2>Lista de Vendas</h2>
+  
+    <div class="header-actions">
+      <button routerLink="/sales/new" class="primary">Nova Venda</button>
+    </div>
+  
+    <div *ngIf="loading" class="message loading">Carregando...</div>
+    <div *ngIf="error" class="message error">{{ error }}</div>
+  
+    <table *ngIf="!loading && !error && sales.length > 0" class="sales-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nº Venda</th>
+          <th>Data</th>
+          <th>Cliente</th>
+          <th>Filial</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sale of sales">
+          <td>{{ sale.id }}</td>
+          <td>{{ sale.saleNumber }}</td>
+          <td>{{ sale.saleDate | date }}</td>
+          <td>{{ sale.customer }}</td>
+          <td>{{ sale.branch }}</td>
+          <td>{{ sale.totalAmount | currency }}</td>
+          <td>
+            <span [class.cancelled]="sale.isCancelled" [class.active]="!sale.isCancelled">
+              {{ sale.isCancelled ? 'Cancelada' : 'Ativa' }}
+            </span>
+          </td>
+          <td>
+            <button (click)="viewDetails(sale.id)">Ver</button>
+            <button (click)="editSale(sale.id)">Editar</button>
+            <button (click)="cancelSale(sale.id)" [disabled]="sale.isCancelled">Cancelar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="!loading && sales.length === 0" class="message empty">Nenhuma venda cadastrada.</div>
+  </div>
+  

@@ -1,0 +1,11 @@
+{
+    "/sales": {
+      "target": "http://localhost:7181",
+      "secure": false
+    },
+    "/api": {
+      "target": "http://localhost:7181",
+      "secure": false
+    }
+  }
+  

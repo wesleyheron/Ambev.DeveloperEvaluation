@@ -1,11 +1,10 @@
-
 services:
   ambev.developerevaluation.database:
     container_name: ambev_developer_evaluation_database
-    image: postgres:13
-
+    image: postgres
+    restart: unless-stopped
     environment:
-      POSTGRES_DB: developer_evaluation
+      POSTGRES_DATABSE: evaluation
       POSTGRES_USER: developer
       POSTGRES_PASSWORD: ev@luAt10n
     ports:
@@ -14,8 +13,7 @@ services:
       test: ["CMD-SHELL", "pg_isready -U developer"]
       interval: 5s
       timeout: 5s
-      retries: 5
-    restart: unless-stopped
+      retries: 5   
   
   ambev.developerevaluation.webapi:
     container_name: ambev_developer_evaluation_webapi
@@ -60,10 +58,10 @@ services:
     image: redis:7.4.1-alpine     
     command: redis-server --requirepass ev@luAt10n
     environment:
-       MONGO_INITDB_ROOT_USERNAME: developer
-       MONGO_INITDB_ROOT_PASSWORD: ev@luAt10n
+      MONGO_INITDB_ROOT_USERNAME: developer
+      MONGO_INITDB_ROOT_PASSWORD: ev@luAt10n
     ports:
-       - "6379"
+      - "6379"
   
   ambev.developerevaluation.rabbitmq:
     container_name: ambev_developer_evaluation_rabbitmq
